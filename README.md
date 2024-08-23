@@ -1,5 +1,9 @@
-# Ex.No: 1B                     CONVERSION OF NON STATIONARY TO STATIONARY DATA
-# Date: 
+### Developed By: Prasannalakshmi G
+### Reg No: 212222240075
+### Date: 
+
+# Ex.No: 1B CONVERSION OF NON STATIONARY TO STATIONARY DATA
+
 
 ### AIM:
 To perform regular differncing,seasonal adjustment and log transformatio on international airline passenger data
