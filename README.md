@@ -6,7 +6,8 @@
 
 
 ### AIM:
-To perform regular differncing,seasonal adjustment and log transformatio on international airline passenger data
+To perform regular differncing,seasonal adjustment and log transformatio on international goodreads books dataset
+
 ### ALGORITHM:
 1. Import the required packages like pandas and numpy
 2. Read the data using the pandas
@@ -14,6 +15,7 @@ To perform regular differncing,seasonal adjustment and log transformatio on inte
 4. Plot the data according to need, before and after regular differncing,seasonal adjustment,log transformation.
 5. Display the overall results.
 ### PROGRAM:
+
 ```python
 import pandas as pd
 import numpy as np
@@ -21,11 +23,11 @@ import matplotlib.pyplot as plt
 from statsmodels.tsa.stattools import adfuller
 %matplotlib inline
 
-train = pd.read_csv("AirPassengers.csv")
-train.timestamp = pd.to_datetime(train.Month, format = '%Y-%m')
-train.drop('Month', axis=1, inplace = True)
+train = pd.read_csv("Goodreadsbooks.csv", nrows = 10)
+train.timestamp = pd.to_datetime(train.publication_date, format = '%m/%d/%Y')
+train.drop('publication_date', axis=1, inplace = True)
 train.head()
-train['#Passengers'].plot()
+train['bookID'].plot()
 
 def adf_test(timeseries):
     print('Results of Dickey-Fuller Test:')
@@ -34,41 +36,47 @@ def adf_test(timeseries):
     for key, value in dftest[4].items():
         dfoutput['Critical Value (%s)' % key] = value
     print(dfoutput)
-adf_test(train['#Passengers'])
 
-train['#Passengers_diff'] = train['#Passengers'] - train['#Passengers'].shift(1)
-train['#Passengers_diff'].dropna().plot()
+adf_test(train['bookID'])
+
+
+train['book_ID_diff'] = train['bookID'] - train['bookID'].shift(1)
+train['book_ID_diff'].dropna().plot()
+
 # Seasonal Differencing
 n=7
-train['#Passengers_diff'] = train['#Passengers'] - train['#Passengers'].shift(n)
-train['#Passengers_diff'].dropna().plot()
+train['book_ID_diff'] = train['bookID'] - train['bookID'].shift(n)
+train['book_ID_diff'].dropna().plot()
+
 # Transformation
-train['#Passengers_log'] = np.log(train['#Passengers'])
-train['#Passengers_log_diff'] = train['#Passengers_log'] - train['#Passengers_log'].shift(1)
-train['#Passengers_log_diff'].dropna().plot()
+train['bookID_log'] = np.log(train['bookID'])
+train['bookID_log_diff'] = train['bookID_log'] - train['bookID_log'].shift(1)
+train['bookID_log_diff'].dropna().plot()
+
 
 ```
 
 ### OUTPUT:
-![image](https://github.com/user-attachments/assets/94f68a80-e167-4508-afff-b42dac7f8939)
+![image](https://github.com/user-attachments/assets/e07232a3-30b5-45da-a7c6-784c40c8ba93)
 
-![image](https://github.com/user-attachments/assets/bfa8e4ab-445d-43a2-8ec3-f74662de9af9)
+![image](https://github.com/user-attachments/assets/ee19eee7-d92c-41a2-bf9a-ee1ea641b375)
 
 REGULAR DIFFERENCING:
 
-![image](https://github.com/user-attachments/assets/17857046-7bd7-44dc-9428-c1394de2f9c8)
+![image](https://github.com/user-attachments/assets/26e34c12-29d6-406f-b083-6f81e13023ca)
 
 SEASONAL ADJUSTMENT:
+![image](https://github.com/user-attachments/assets/6ac770b1-9f0e-4bcb-bb03-ac6b7801f1a6)
 
-![image](https://github.com/user-attachments/assets/f762d90c-d979-429b-aff5-80b528bb17be)
 
 LOG TRANSFORMATION:
+![image](https://github.com/user-attachments/assets/d3ed1812-2963-4af9-93a2-b5ac3e7bbc19)
 
-![image](https://github.com/user-attachments/assets/0602e303-2a10-4d7d-9ac9-bda95bfdd368)
 
 ALL 3:
 
-![image](https://github.com/user-attachments/assets/d56961b3-175a-49c5-843a-cc4b4ce71ca3)
+![image](https://github.com/user-attachments/assets/28df4fd3-ca24-47c8-8805-fe6c5318cf2a)
+
 
 
 ### RESULT:
