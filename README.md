@@ -6,7 +6,7 @@
 
 
 ### AIM:
-To perform regular differncing,seasonal adjustment and log transformatio on international goodreads books dataset
+To perform regular differncing,seasonal adjustment and log transformatio on goodreads books dataset
 
 ### ALGORITHM:
 1. Import the required packages like pandas and numpy
@@ -81,5 +81,5 @@ ALL 3:
 
 
 ### RESULT:
-Thus we have created the python code for the conversion of non stationary to stationary data on international goodreads books dataset
+Thus, The python code for the conversion of non stationary to stationary data on goodreads books dataset
 data.
